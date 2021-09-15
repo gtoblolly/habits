@@ -1,0 +1,4 @@
+<%= @habit.habit %>
+<%= @habit.content %>
+<%= link_to "削除", habit_path(@habit.id), method: :delete %>
+<%= link_to "編集", edit_habit_path(@habit.id), method: :get %>
