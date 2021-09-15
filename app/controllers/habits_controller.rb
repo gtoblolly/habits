@@ -17,6 +17,12 @@ class HabitsController < ApplicationController
     end
   end
 
+  def destroy
+    habit = Habit.find(params[:id])
+    habit.destroy
+    redirect_to root_path
+  end
+
   private
 
   def habit_params

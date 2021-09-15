@@ -1,3 +1,4 @@
 <% @habits.each do |habit| %>
   <%= habit.habit %>
+  <%= link_to "削除", habit_path(habit.id), method: :delete %>
 <% end %>
