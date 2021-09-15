@@ -23,6 +23,16 @@ class HabitsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @habit = Habit.find(params[:id])
+  end
+
+  def update
+    habit = Habit.find(params[:id])
+    habit.update(habit_params)
+    redirect_to root_path
+  end
+
   private
 
   def habit_params
