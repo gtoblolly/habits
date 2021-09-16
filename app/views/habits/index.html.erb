@@ -1,0 +1,6 @@
+<% @habits.each do |habit| %>
+  <%= habit.habit %>
+  <%= link_to "削除", habit_path(habit.id), method: :delete %>
+  <%= link_to "編集", edit_habit_path(habit.id), method: :get %>
+  <%= link_to "詳細", habit_path(habit.id), method: :get %>
+<% end %>
