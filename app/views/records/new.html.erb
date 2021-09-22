@@ -1,0 +1,5 @@
+<%= form_with(model: @record, url: habit_records_path, method: :post, local: true) do |form| %>
+  <%= form.collection_select(:habit_id, Habit.all, :id, :habit) %>
+  <%= form.text_field :text, placeholder: "記録" %>
+  <%= form.submit "記録を作成" %>
+<% end %>
