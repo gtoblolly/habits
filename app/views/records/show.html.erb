@@ -6,3 +6,4 @@
 <%= @record.created_at %>
 <%= @record.text %>
 <%= link_to "削除", habit_record_path(@record.id), method: :delete %>
+<%= link_to "編集", edit_habit_record_path(@record.id), method: :get %>

@@ -24,6 +24,10 @@ class RecordsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @record = Record.find(params[:id])
+  end
+
     private
 
     def record_params
