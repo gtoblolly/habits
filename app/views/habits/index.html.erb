@@ -3,6 +3,7 @@
   <% @records.each do |record| %>
     <% if habit.id == record.habit_id %>
       <%= record.text %>
+      <%= link_to "記録詳細", habit_record_path(habit.id, record.id), method: :get %>
     <% end %>
   <% end %>
   <%= link_to "削除", habit_path(habit.id), method: :delete %>

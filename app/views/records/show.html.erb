@@ -1,0 +1,7 @@
+<% @habit.each do |habit| %>
+  <% if habit.id == @record.habit_id %>
+    <%= habit.habit %>
+  <% end %>
+<% end %>
+<%= @record.created_at %>
+<%= @record.text %>

@@ -13,6 +13,11 @@ class RecordsController < ApplicationController
     end
   end
 
+  def show
+    @habit = Habit.all
+    @record = Record.find(params[:id])
+  end
+
     private
 
     def record_params
