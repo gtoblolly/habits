@@ -5,3 +5,4 @@
 <% end %>
 <%= @record.created_at %>
 <%= @record.text %>
+<%= link_to "削除", habit_record_path(@record.id), method: :delete %>
