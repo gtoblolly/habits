@@ -1,5 +1,10 @@
 <% @habits.each do |habit| %>
   <%= habit.habit %>
+  <% @records.each do |record| %>
+    <% if habit.id == record.habit_id %>
+      <%= record.text %>
+    <% end %>
+  <% end %>
   <%= link_to "削除", habit_path(habit.id), method: :delete %>
   <%= link_to "編集", edit_habit_path(habit.id), method: :get %>
   <%= link_to "詳細", habit_path(habit.id), method: :get %>
