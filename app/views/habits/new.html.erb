@@ -1,5 +1,5 @@
 <%= form_with(model: @habit, local: true) do |form| %>
-  <%= form.text_field :habit, placeholder: "習慣" %>
+  <%= form.text_field :title, placeholder: "習慣" %>
   <%= form.text_area :content, placeholder: "習慣内容" %>
   <%= form.submit "習慣を作成" %>
 <% end %>

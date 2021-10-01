@@ -1,5 +1,5 @@
 <% @habits.each do |habit| %>
-  <%= habit.habit %>
+  <%= habit.title %>
   <% @records.each do |record| %>
     <% if habit.id == record.habit_id %>
       <%= record.text %>

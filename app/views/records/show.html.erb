@@ -1,6 +1,6 @@
 <% @habit.each do |habit| %>
   <% if habit.id == @record.habit_id %>
-    <%= habit.habit %>
+    <%= habit.title %>
   <% end %>
 <% end %>
 <%= @record.created_at %>
