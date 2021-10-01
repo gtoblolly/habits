@@ -11,4 +11,6 @@
   <%= link_to "詳細", habit_path(habit.id), method: :get %>
 <% end %>
 
-<%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
+<% if @habits.ids.present? %>
+  <%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
+<% end %>
