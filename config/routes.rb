@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "habits#index"
   resources :habits do
-  resources :records, only: [:new, :create, :show, :destroy, :edit]
+    resources :records, only: [:new, :create, :show, :destroy, :edit, :update]
   end
 end
