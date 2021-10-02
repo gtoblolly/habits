@@ -1,5 +1,6 @@
 <p>記録編集画面</p>
 <%= form_with(model: @record, url: habit_record_path, local: true) do |form| %>
   <%= form.text_field :text, placeholder: "記録" %>
+  <%= form.file_field :image %>
   <%= form.submit "記録を編集" %>
 <% end %>
