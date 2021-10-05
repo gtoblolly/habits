@@ -41,7 +41,7 @@ class HabitsController < ApplicationController
   private
 
   def habit_params
-    params.require(:habit).permit(:title, :content)
+    params.require(:habit).permit(:title, :content).merge(user_id: current_user.id)
   end
 
 end
