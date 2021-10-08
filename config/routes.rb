@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :habits do
     resources :records, only: [:new, :create, :show, :destroy, :edit, :update]
   end
+  resources :users, only: :show
 end
