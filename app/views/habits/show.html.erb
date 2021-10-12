@@ -1,4 +1,20 @@
+<h1>習慣詳細ページ</h1>
+<%= link_to user_path(@habit.user_id), method: :get do %>
+  <%= @habit.user.nickname %>
+<% end %>
 <%= @habit.title %>
 <%= @habit.content %>
-<%= link_to "削除", habit_path(@habit.id), method: :delete %>
-<%= link_to "編集", edit_habit_path(@habit.id), method: :get %>
+
+<% if current_user.id == @habit.user_id %>
+  <%= link_to "習慣を削除", habit_path(@habit.id), method: :delete %>
+  <%= link_to "習慣を編集", edit_habit_path(@habit.id), method: :get %>
+<% end %>
+
+<h3>最近の習慣記録</h3>
+<% @habit.records.first(2).each do |record| %>
+  <%= link_to habit_record_path(@habit.id, record.id), method: :get do %>
+    <%= record.created_at.strftime('%Y/%m/%d') %>
+    <%= record.text %>
+    <%= image_tag record.image if record.image.attached? %>
+  <% end %>
+<% end %>
