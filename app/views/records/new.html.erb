@@ -1,5 +1,6 @@
+<h1>記録投稿画面</h1>
 <%= form_with(model: @record, url: habit_records_path, method: :post, local: true) do |form| %>
-  <%= form.collection_select(:habit_id, Habit.all, :id, :title) %>
+  <%= form.collection_select(:habit_id, current_user.habits, :id, :title) %>
   <%= form.text_field :text, placeholder: "記録" %>
   <%= form.file_field :image %>
   <%= form.submit "記録を作成" %>
