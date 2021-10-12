@@ -1,10 +1,16 @@
-<% @habit.each do |habit| %>
-  <% if habit.id == @record.habit_id %>
-    <%= habit.title %>
-  <% end %>
+<h1>記録詳細画面</h1>
+<%= @record.created_at.strftime('%Y/%m/%d') %>
+<%= link_to user_path(@record.user_id), method: :get do %>
+  <%= @record.user.nickname %>
+<% end %>
+<%= link_to habit_path(@record.habit.id), method: :get do %>
+  <%= @record.habit.title %>
 <% end %>
 <%= @record.created_at %>
-<%= @record.text %>
 <%= image_tag @record.image if @record.image.attached? %>
-<%= link_to "削除", habit_record_path(@record.id), method: :delete %>
-<%= link_to "編集", edit_habit_record_path(@record.id), method: :get %>
+<%= @record.text %>
+
+<% if current_user.id == @record.user_id%>
+  <%= link_to "記録を削除", habit_record_path(@record.id), method: :delete %>
+  <%= link_to "記録を編集", edit_habit_record_path(@record.id), method: :get %>
+<% end %>
