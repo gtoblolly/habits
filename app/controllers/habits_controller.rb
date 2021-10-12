@@ -2,7 +2,7 @@ class HabitsController < ApplicationController
 
   def index
     @habits = Habit.all
-    @records = Record.all
+    @records = Record.all.order("created_at DESC")
   end
 
   def new
