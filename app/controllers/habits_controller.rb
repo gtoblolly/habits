@@ -1,4 +1,5 @@
 class HabitsController < ApplicationController
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @habits = Habit.all
@@ -42,6 +43,13 @@ class HabitsController < ApplicationController
 
   def habit_params
     params.require(:habit).permit(:title, :content).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    @habit = Habit.find(params[:id])
+    unless user_signed_in? && current_user.id == @habit.user.id
+      redirect_to root_path
+    end
   end
 
 end
