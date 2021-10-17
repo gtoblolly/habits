@@ -9,10 +9,10 @@
 
 <h3>最近の習慣記録</h3>
 
-<% @habits.first(2).zip(@records) do |habit, record| %>
+<% @records.first(2).each do |record| %>
   <%= record.created_at.strftime('%Y/%m/%d') %>
-  <%= habit.title %>
-  <%= link_to habit_record_path(habit.id, record.id), method: :get do %>
+  <%= record.habit.title %>
+  <%= link_to habit_record_path(@habits.ids, record.id), method: :get do %>
     <%= record.text %>
   <% end %>
 <% end %>
