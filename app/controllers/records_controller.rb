@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :new, :create, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def new
     @record = Record.new
@@ -34,10 +36,17 @@ class RecordsController < ApplicationController
     redirect_to root_path
   end
 
-    private
+  private
 
-    def record_params
-      params.require(:record).permit(:text, :habit_id, :image).merge(user_id: current_user.id)
+  def record_params
+    params.require(:record).permit(:text, :habit_id, :image).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    @record = Record.find(params[:id])
+    unless current_user.id == @record.user.id
+      redirect_to root_path
     end
+  end
     
 end
