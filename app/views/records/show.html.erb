@@ -10,7 +10,7 @@
 <%= image_tag @record.image if @record.image.attached? %>
 <%= @record.text %>
 
-<% if current_user.id == @record.user_id%>
+<% if user_signed_in? && current_user.id == @record.user_id%>
   <%= link_to "記録を削除", habit_record_path(@record.id), method: :delete %>
   <%= link_to "記録を編集", edit_habit_record_path(@record.id), method: :get %>
 <% end %>

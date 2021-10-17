@@ -5,7 +5,7 @@
 <%= @habit.title %>
 <%= @habit.content %>
 
-<% if current_user.id == @habit.user_id %>
+<% if user_signed_in? && current_user.id == @habit.user_id %>
   <%= link_to "習慣を削除", habit_path(@habit.id), method: :delete %>
   <%= link_to "習慣を編集", edit_habit_path(@habit.id), method: :get %>
 <% end %>
