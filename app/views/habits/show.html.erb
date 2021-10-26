@@ -3,6 +3,7 @@
   <%= @habit.user.nickname %>
 <% end %>
 <%= @habit.title %>
+<%= @habit.level %>レベル
 <%= @habit.content %>
 
 <% if user_signed_in? && current_user.id == @habit.user_id %>
