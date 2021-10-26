@@ -7,12 +7,17 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.create(record_params)
-    if @record.save
-      redirect_to root_path
-    else
-      render :new
+    ActiveRecord::Base.transaction do
+      @record = Record.create(record_params)
+      @record.save
+      @habit = Habit.find(@record.habit_id)
+      @habit.exp_sum += @record.exp.to_i
+      @habit.level = @habit.exp_sum.to_i / 5
+      @habit.update(exp_sum: @habit.exp_sum, level: @habit.level)
     end
+      redirect_to root_path
+    rescue => e
+      render :new
   end
 
   def show
@@ -21,9 +26,17 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    record = Record.find(params[:id])
-    record.destroy
-    redirect_to root_path
+    ActiveRecord::Base.transaction do
+      record = Record.find(params[:id])
+      habit = Habit.find(record.habit_id)
+      record.destroy
+      habit.exp_sum -= 1
+      habit.level = habit.exp_sum.to_i / 5
+      habit.update(exp_sum: habit.exp_sum, level: habit.level)
+    end
+      redirect_to root_path
+    rescue => e
+      render :new
   end
 
   def edit
