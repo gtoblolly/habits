@@ -12,10 +12,7 @@
 <% end %>
 
 <h3>最近の習慣記録</h3>
-<% @habit.records.first(2).each do |record| %>
-  <%= link_to habit_record_path(@habit.id, record.id), method: :get do %>
-    <%= record.created_at.strftime('%Y/%m/%d') %>
-    <%= record.text %>
-    <%= image_tag record.image if record.image.attached? %>
-  <% end %>
+<% @records.first(2).each do |record| %>
+  <%= render partial: 'records/record', locals: { record: record } %>
+  <%= record.text %>
 <% end %>

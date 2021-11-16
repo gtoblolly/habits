@@ -1,18 +1,7 @@
 <h1>記録詳細画面</h1>
-<%= @record.created_at.strftime('%Y/%m/%d') %>
-<%= link_to user_path(@record.user_id), method: :get do %>
-  <%= @record.user.nickname %>
-<% end %>
-<%= link_to habit_path(@record.habit.id), method: :get do %>
-  <%= @record.habit.title %>
-<% end %>
-<%= @record.created_at %>
-<%= image_tag @record.image if @record.image.attached? %>
-<%= @record.text %>
 
-<div id="like-btn-<%= @record.id %>">
-  <%= render partial: 'likes/like', locals: { record: @record } %>
-</div>
+<%= render partial: 'records/record', locals: { record: @record } %>
+<%= @record.text %>
 
 <% if user_signed_in? && current_user.id == @record.user_id%>
   <%= link_to "記録を削除", habit_record_path(@record.id), method: :delete %>

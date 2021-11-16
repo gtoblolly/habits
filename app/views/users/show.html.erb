@@ -10,11 +10,8 @@
 <h3>最近の習慣記録</h3>
 
 <% @records.first(2).each do |record| %>
-  <%= record.created_at.strftime('%Y/%m/%d') %>
-  <%= record.habit.title %>
-  <%= link_to habit_record_path(@habits.ids, record.id), method: :get do %>
-    <%= record.text %>
-  <% end %>
+  <%= render partial: 'records/record', locals: { record: record } %>
+  <%= record.text %>
 <% end %>
 
 <%= link_to "習慣を作る", new_habit_path %>
