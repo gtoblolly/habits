@@ -1,0 +1,7 @@
+<% if current_user.liked_by?(@record) %>
+  <%= link_to 'いいねを外す', habit_record_likes_path(@habits.ids, @record.id), method: :DELETE, remote: true %>
+  <%= @record.likes.count %>
+<% else %>
+  <%= link_to 'いいね', habit_record_likes_path(@habits.ids, @record.id), method: :POST, remote: true %>
+  <%= @record.likes.count %>
+<% end %>
