@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_000153) do
+ActiveRecord::Schema.define(version: 2021_10_26_070150) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2021_10_20_000153) do
     t.integer "exp_sum", default: 0
     t.integer "level", default: 1
     t.index ["user_id"], name: "index_habits_on_user_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "record_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_id"], name: "index_likes_on_record_id"
+    t.index ["user_id", "record_id"], name: "index_likes_on_user_id_and_record_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
