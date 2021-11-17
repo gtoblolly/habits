@@ -1,7 +1,10 @@
-<% if current_user.liked_by?(record) %>
-  <%= link_to 'いいねを外す', habit_record_likes_path(@habits.ids, record.id), method: :DELETE, remote: true %>
-  <%= record.likes.count %>
-<% else %>
-  <%= link_to 'いいね', habit_record_likes_path(@habits.ids, record.id), method: :POST, remote: true %>
-  <%= record.likes.count %>
+<% if user_signed_in? %>
+  <% if current_user.liked_by?(record) %>
+    <%= link_to 'イイねを外す', habit_record_likes_path(@habits.ids, record.id), method: :DELETE, remote: true %>
+  <% else %>
+    <%= link_to 'イイねする', habit_record_likes_path(@habits.ids, record.id), method: :POST, remote: true %>
+  <% end %>
 <% end %>
+
+イイねカウント
+<%= record.likes.count %>
