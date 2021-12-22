@@ -23,6 +23,9 @@ document.addEventListener('turbolinks:load', function() {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new Calendar(calendarEl, {
+    locale: 'ja',
+    dayCellContent: function(e) { e.dayNumberText = e.dayNumberText.replace('日', ''); },
+    buttonText: { today: '今日', },
     plugins: [ dayGridPlugin, interactionPlugin ]
   });
 

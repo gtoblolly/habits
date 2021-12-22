@@ -6,3 +6,5 @@
 <% if @habits.ids.present? %>
   <%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
 <% end %>
+
+<div id='calendar'></div>
