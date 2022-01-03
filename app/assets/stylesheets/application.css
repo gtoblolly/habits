@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+ th.fc-day-sat {
+  background-color: #eaf4ff;
+}
+th.fc-day-sun {
+  background-color: #ffeaea;
+}
+td.fc-day-sat {
+  background-color: #eaf4ff;
+}
+td.fc-day-sun {
+  background-color: #ffeaea;
+}
