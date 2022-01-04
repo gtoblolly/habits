@@ -18,6 +18,7 @@ require("channels")
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import googleCalendarApi from '@fullcalendar/google-calendar'
 
 document.addEventListener('turbolinks:load', function() {
   var calendarEl = document.getElementById('calendar');
@@ -26,7 +27,13 @@ document.addEventListener('turbolinks:load', function() {
     locale: 'ja',
     dayCellContent: function(e) { e.dayNumberText = e.dayNumberText.replace('日', ''); },
     buttonText: { today: '今日', },
-    plugins: [ dayGridPlugin, interactionPlugin ]
+    plugins: [ dayGridPlugin, interactionPlugin, googleCalendarApi ],
+    googleCalendarApiKey: gon.google_calender_API_key,
+    events: {
+    googleCalendarId: 'ja.japanese#holiday@group.v.calendar.google.com',
+    rendering: 'background',
+      color:"#ffd0d0"
+    }
   });
 
   calendar.render();
