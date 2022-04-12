@@ -7,4 +7,5 @@
   <%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
 <% end %>
 
+<%= javascript_pack_tag 'habit/index' %>
 <div id='calendar'></div>
