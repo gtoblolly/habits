@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
 
+
+
   def show
-    user = User.find(params[:id])
-    @nickname = user.nickname
-    @habits = user.habits.order("created_at DESC")
-    @records = user.records.order("created_at DESC")
+    gon.user = User.find(params[:id])
+    @nickname = gon.user.nickname
+    @habits = gon.user.habits.order("created_at DESC")
+    @records = gon.user.records.order("created_at DESC")
   end
 
 end
