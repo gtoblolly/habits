@@ -38,7 +38,7 @@ class HabitsController < ApplicationController
 
   def show
     @habits = Habit.all
-    @habit = Habit.find(params[:id])
+    @habit = gon.habit = Habit.find(params[:id])
     @records = @habit.records.order("created_at DESC")
   end
 

@@ -16,3 +16,6 @@
   <%= render partial: 'records/record', locals: { record: record } %>
   <%= record.text %>
 <% end %>
+
+<%= javascript_pack_tag 'habit/show' %>
+<div id='calendar'></div>
