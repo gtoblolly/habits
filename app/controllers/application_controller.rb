@@ -12,5 +12,5 @@ class ApplicationController < ActionController::Base
   def set_google_calender
     gon.google_calender_API_key = ENV['GOOGLE_CALENDER_API_KEY']
   end
-  
+
 end

@@ -1,15 +1,24 @@
-<%= record.created_at.strftime('%Y/%m/%d') %>
-<%= link_to user_path(record.user_id), method: :get do %>
-  <%= record.user.nickname %>
-<% end %>
-<%= link_to habit_path(record.habit.id), method: :get do %>
-  <%= record.habit.title %>
-<% end %>
-<%= link_to habit_record_path(@habits.ids, record.id), method: :get do %>
-  <p>習慣達成</p>
-<% end %>
-<%= image_tag record.image if record.image.attached? %>
+<div class="container mt-5" style="background-image: url(<%= rails_blob_url(record.image) if record.image.attached? %>);">
 
-<div id="like-btn-<%= record.id %>">
-  <%= render partial: 'likes/like', locals: { record: record } %>
+  <div class="record-header d-flex justify-content-start align-items-start" style="height:100px;">
+    <div class="record-header-left col2">
+      <%= record.created_at.strftime('%Y/%m/%d') %>
+    </div>
+    <div class="record-header-right col2">
+      <%= link_to user_path(record.user_id), method: :get do %>
+        <%= record.user.nickname %>さん
+      <% end %>
+    </div>
+  </div>
+
+  <div class="record-main d-flex justify-content-center align-items-center" style="height:100px;">
+    <%= link_to habit_record_path(@habits.ids, record.id), method: :get do %>
+      <%= record.habit.title %>習慣達成
+    <% end %>
+  </div>
+
+  <div class="record-footer d-flex justify-content-end align-items-end" id="like-btn-<%= record.id %>" style="height:100px;">
+    <%= render partial: 'likes/like', locals: { record: record } %>
+  </div>
+
 </div>

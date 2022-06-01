@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- th.fc-day-sat {
+th.fc-day-sat {
   background-color: #eaf4ff;
 }
 th.fc-day-sun {
@@ -24,4 +24,24 @@ td.fc-day-sat {
 }
 td.fc-day-sun {
   background-color: #ffeaea;
+}
+
+.container {
+  background: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: ghostwhite;
+  text-shadow: 0 0 1px #000, 0 0 1px #000, 0 0 1px #000;
+}
+.record-header {
+  font-size: 1.5rem;
+}
+.record-header-left {
+  padding-right: 15px;
+}
+.record-main {
+  font-size: 1.5rem;
+}
+.record-footer {
+  font-size: 1.5rem;
 }
