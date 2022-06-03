@@ -1,11 +1,11 @@
-<h1>習慣化アプリトップページ</h1>
+<div class="heading h2">みんなの習慣記録一覧</div>
 <% @records.first(4).each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
 <% end %>
 
 <% if @habits.ids.present? %>
-  <%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
+  <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-success btn-lg col-4 btn-block mx-auto mt-5", method: :get %>
 <% end %>
 
 <%= javascript_pack_tag 'habit/index' %>
-<div id='calendar'></div>
+<div id='calendar' class="container mt-5"></div>
