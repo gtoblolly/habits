@@ -26,6 +26,11 @@ td.fc-day-sun {
   background-color: #ffeaea;
 }
 
+h3 {
+  padding: 1rem 2rem;
+  border-left: 4px solid #000;
+}
+
 .record {
   background: center;
   background-size: contain;

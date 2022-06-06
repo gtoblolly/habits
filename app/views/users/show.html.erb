@@ -1,23 +1,27 @@
-<h1>ユーザーページ</h1>
-<%= @nickname %>
+<div class="heading h2"><%= @nickname %>さんのページ</div>
 
-<% @habits.each do |habit| %>
-  <%= link_to habit_path(habit.id), method: :get do %>
-    <%= habit.title %>
+<div class="container py-5 d-grid gap-2 d-md-flex justify-content-md-end">
+  <% if @habits.ids.present? %>
+    <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-4 btn-block mx-auto mt-5", method: :get %>
   <% end %>
-<% end %>
+  <%= link_to "習慣を作る", new_habit_path, class: "btn btn-outline-success btn-lg col-4 btn-block mx-auto mt-5" %>
+</div>
 
-<h3>最近の習慣記録</h3>
+<div class="container py-5">
+  <h3>習慣一覧</h3>
+  <% @habits.each do |habit| %>
+    <%= link_to habit_path(habit.id), class: "btn btn-success btn-lg col-6 btn-block mx-auto mt-5", method: :get do %>
+      <%= habit.title %>
+    <% end %>
+  <% end %>
+</div>
 
+<div class="container py-5">
+  <h3>最近の記録</h3>
+</div>
 <% @records.first(2).each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
-  <%= record.text %>
-<% end %>
-
-<%= link_to "習慣を作る", new_habit_path %>
-<% if @habits.ids.present? %>
-  <%= link_to "記録する", new_habit_record_path(@habits.ids), method: :get %>
 <% end %>
 
 <%= javascript_pack_tag 'user/show' %>
-<div id='calendar'></div>
+<div id='calendar'class="container py-5"></div>
