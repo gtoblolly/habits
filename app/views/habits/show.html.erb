@@ -1,21 +1,27 @@
-<h1>習慣詳細ページ</h1>
-<%= link_to user_path(@habit.user_id), method: :get do %>
-  <%= @habit.user.nickname %>
-<% end %>
-<%= @habit.title %>
-<%= @habit.level %>レベル
-<%= @habit.content %>
+<div class="heading h2">習慣詳細ページ</div>
 
-<% if user_signed_in? && current_user.id == @habit.user_id %>
-  <%= link_to "習慣を削除", habit_path(@habit.id), method: :delete %>
-  <%= link_to "習慣を編集", edit_habit_path(@habit.id), method: :get %>
-<% end %>
+<div class="habit container my-5">
+  <div class="h2 p-3 d-flex justify-content-center" style="height:auto;">
+    <%= @habit.title %>習慣 Lv.<%= @habit.level %>
+  </div>
+  <div class="border" style="height:auto;">
+    <div class="h3 pt-3 d-flex justify-content-center">習慣内容</div>
+    <div class="h5 p-3 d-flex justify-content-center"><%= @habit.content %></div>
+  </div>
+  <div class="p-3 d-flex justify-content-around">
+    <% if user_signed_in? && current_user.id == @habit.user_id %>
+      <%= link_to "習慣を編集", edit_habit_path(@habit.id), class: "btn btn-outline-warning", method: :get %>
+      <%= link_to "習慣を削除", habit_path(@habit.id), class: "btn btn-outline-danger", method: :delete %>
+    <% end %>
+  </div>
+</div>
 
-<h3>最近の習慣記録</h3>
+<div class="container py-5">
+  <h3>最近の記録</h3>
+</div>
 <% @records.first(2).each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
-  <%= record.text %>
 <% end %>
 
 <%= javascript_pack_tag 'habit/show' %>
-<div id='calendar'></div>
+<div id='calendar' class="container py-5"></div>
