@@ -1,5 +1,19 @@
-<%= form_with(model: @habit, local: true) do |form| %>
-  <%= form.text_field :title, placeholder: "習慣" %>
-  <%= form.text_area :content, placeholder: "習慣内容" %>
-  <%= form.submit "習慣を作成" %>
-<% end %>
+<div class="heading h2">習慣作成ページ</div>
+
+<div class="my-5 d-flex justify-content-center">
+  <%= form_with(model: @habit, local: true, class: "container") do |form| %>
+    <div class="h4 pb-5 w-75">
+      習慣名
+      <div>
+        <%= form.text_field :title, class: "form-control"%>
+      </div>
+    </div>
+
+    <div class="h4 pb-5">
+      習慣内容
+      <%= form.text_area :content, class: "form-control", rows: 3%>
+    </div>
+
+      <%= form.submit "習慣を作成" , class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto"%>
+  <% end %>
+</div>
