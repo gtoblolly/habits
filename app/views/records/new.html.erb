@@ -1,7 +1,29 @@
-<h1>記録投稿画面</h1>
-<%= form_with(model: @record, url: habit_records_path, method: :post, local: true) do |form| %>
-  <%= form.collection_select(:habit_id, current_user.habits, :id, :title) %>
-  <%= form.text_field :text, placeholder: "記録" %>
-  <%= form.file_field :image %>
-  <%= form.submit "記録を作成" %>
-<% end %>
+<div class="heading h2">記録投稿画面</div>
+
+<div class="my-5 d-flex justify-content-center">
+  <%= form_with(model: @record, url: habit_records_path, method: :post, local: true, class: "container") do |form| %>
+    <div class="h4 pb-5">
+      習慣
+      <div>
+        <%= form.collection_select(:habit_id, current_user.habits, :id, :title,
+        {prompt: "選択してください"}, {class: "form-control w-75"}) %>
+      </div>
+    </div>
+
+    <div class="h4 pb-5">
+      記録内容
+      <div>
+        <%= form.text_area :text, class: "form-control", rows: 3%>
+      </div>
+    </div>
+
+    <div class="h4">
+      画像をアップロード
+      <div>
+        <%= form.file_field :image, class: "form-control mb-5 p-1 w-75" %>
+      </div>
+    </div>
+
+    <%= form.submit "記録を作成", class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto" %>
+  <% end %>
+</div>
