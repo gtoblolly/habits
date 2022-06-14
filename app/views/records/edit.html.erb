@@ -1,6 +1,21 @@
-<p>記録編集画面</p>
-<%= form_with(model: @record, url: habit_record_path, local: true) do |form| %>
-  <%= form.text_field :text, placeholder: "記録" %>
-  <%= form.file_field :image %>
-  <%= form.submit "記録を編集" %>
-<% end %>
+<div class="heading h2">記録編集画面</div>
+
+<div class="my-5 d-flex justify-content-center">
+  <%= form_with(model: @record, url: habit_record_path, local: true, class: "container") do |form| %>
+    <div class="h4 pb-5">
+      記録内容
+      <div>
+        <%= form.text_area :text, class: "form-control", rows: 3%>
+      </div>
+    </div>
+
+    <div class="h4">
+      画像をアップロード
+      <div>
+        <%= form.file_field :image, class: "form-control mb-5 p-1 w-75" %>
+      </div>
+    </div>
+
+    <%= form.submit "記録を編集", class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto" %>
+  <% end %>
+</div>
