@@ -1,7 +1,11 @@
 <div class="heading h2">みんなの習慣記録一覧</div>
-<% @records.first(4).each do |record| %>
+<% @records.each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
 <% end %>
+
+<div class="container my-5 py-5 d-flex justify-content-center">
+  <%= paginate @records %>
+</div>
 
 <% if @habits.ids.present? %>
   <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-success btn-lg col-4 btn-block mx-auto mt-5", method: :get %>
