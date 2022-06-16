@@ -66,3 +66,4 @@ gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem "dotenv-rails"
 gem 'gon'
+gem 'kaminari'
