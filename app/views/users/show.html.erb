@@ -23,5 +23,9 @@
   <%= render partial: 'records/record', locals: { record: record } %>
 <% end %>
 
+<div class="container my-5 py-5 d-flex justify-content-center">
+  <%= paginate @records %>
+</div>
+
 <%= javascript_pack_tag 'user/show' %>
 <div id='calendar'class="container py-5"></div>
