@@ -2,6 +2,7 @@
 
 <div class="my-5 d-flex justify-content-center">
   <%= form_with(model: @record, url: habit_records_path, method: :post, local: true, class: "container") do |form| %>
+  <%= render 'layouts/error_messages', model: form.object %>
     <div class="h4 pb-5">
       習慣
       <div>
