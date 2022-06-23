@@ -67,3 +67,4 @@ gem 'devise'
 gem "dotenv-rails"
 gem 'gon'
 gem 'kaminari'
+gem 'rails-i18n'

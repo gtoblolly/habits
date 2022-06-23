@@ -6,3 +6,10 @@ ja:
       previous: "前"
       next: "次"
       truncate: "..."
+
+  activerecord:
+    attributes:
+      habit:
+        title: "習慣名"
+      record:
+        habit: "習慣"
