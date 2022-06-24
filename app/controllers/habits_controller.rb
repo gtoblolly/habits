@@ -14,7 +14,7 @@ class HabitsController < ApplicationController
   def create
     @habit = Habit.create(habit_params)
     if @habit.save
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
     else
       render :new
     end
@@ -23,7 +23,7 @@ class HabitsController < ApplicationController
   def destroy
     habit = Habit.find(params[:id])
     habit.destroy
-    redirect_to root_path
+    redirect_to user_path(current_user.id)
   end
 
   def edit
@@ -33,7 +33,7 @@ class HabitsController < ApplicationController
   def update
     habit = Habit.find(params[:id])
     habit.update(habit_params)
-    redirect_to root_path
+    redirect_to habit_path(habit.id)
   end
 
   def show

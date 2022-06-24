@@ -15,7 +15,7 @@ class RecordsController < ApplicationController
       @habit.level = @habit.exp_sum.to_i / 5
       @habit.update(exp_sum: @habit.exp_sum, level: @habit.level)
     end
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
     rescue => e
       render :new
   end
@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
       habit.level = habit.exp_sum.to_i / 5
       habit.update(exp_sum: habit.exp_sum, level: habit.level)
     end
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
     rescue => e
       render :new
   end
@@ -44,9 +44,10 @@ class RecordsController < ApplicationController
   end
 
   def update
-    @record = Record.find(params[:id])
-    @record.update(record_params)
-    redirect_to root_path
+    @habits = Habit.all
+    record = Record.find(params[:id])
+    record.update(record_params)
+    redirect_to habit_record_path(@habits.ids, record.id)
   end
 
   private
@@ -61,5 +62,5 @@ class RecordsController < ApplicationController
       redirect_to root_path
     end
   end
-    
+
 end
