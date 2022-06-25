@@ -68,3 +68,4 @@ gem "dotenv-rails"
 gem 'gon'
 gem 'kaminari'
 gem 'rails-i18n'
+gem 'devise-i18n'

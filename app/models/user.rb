@@ -6,10 +6,14 @@ class User < ApplicationRecord
   has_many :habits, dependent: :destroy
   has_many :records, dependent: :destroy
   has_many :likes, dependent: :destroy
+
   # イイねした記録の取得
   has_many :liked_records, through: :likes, source: :record
   # いいねしたかどうかの判定
   def liked_by?(record_id)
     likes.where(record_id: record_id).exists?
   end
+
+  validates :nickname, presence: true
+
 end
