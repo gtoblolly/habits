@@ -6,7 +6,7 @@
   <div class="container" style="height:auto;">
     <div class="h3 pt-3 d-flex justify-content-center">記録内容</div>
     <% if @record.text.present? %>
-      <div class="h5 p-3 d-flex justify-content-center"><%= @record.text %></div>
+      <div class="h5 p-3 d-flex justify-content-center"><%= safe_join(@record.text.split("\n"),tag(:br)) %></div>
     <% else %>
       <div class="h5 p-3 d-flex justify-content-center">内容はありません</div>
     <% end %>

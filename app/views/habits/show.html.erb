@@ -6,7 +6,7 @@
   </div>
   <div class="border" style="height:auto;">
     <div class="h3 pt-3 d-flex justify-content-center">習慣内容</div>
-    <div class="h5 p-3 d-flex justify-content-center"><%= @habit.content %></div>
+    <div class="h5 p-3 d-flex justify-content-center"><%= safe_join(@habit.content.split("\n"),tag(:br)) %></div>
   </div>
   <div class="p-3 d-flex justify-content-around">
     <% if user_signed_in? && current_user.id == @habit.user_id %>
