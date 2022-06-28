@@ -8,7 +8,7 @@
 </div>
 
 <% if @habits.ids.present? %>
-  <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-success btn-lg col-4 btn-block mx-auto mt-5", method: :get %>
+  <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5 ", method: :get %>
 <% end %>
 
 <%= javascript_pack_tag 'habit/index' %>

@@ -2,15 +2,15 @@
 
 <div class="container py-5 d-grid gap-2 d-md-flex justify-content-md-end">
   <% if @habits.ids.present? %>
-    <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-4 btn-block mx-auto mt-5", method: :get %>
+    <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5", method: :get %>
   <% end %>
-  <%= link_to "習慣を作る", new_habit_path, class: "btn btn-outline-success btn-lg col-4 btn-block mx-auto mt-5" %>
+  <%= link_to "習慣を作る", new_habit_path, class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5" %>
 </div>
 
 <div class="container py-5">
   <h3>習慣一覧</h3>
   <% @habits.each do |habit| %>
-    <%= link_to habit_path(habit.id), class: "btn btn-success btn-lg col-6 btn-block mx-auto mt-5", method: :get do %>
+    <%= link_to habit_path(habit.id), class: "btn-success btn-lg col-9 btn-block text-center mx-auto mt-5", method: :get do %>
       <%= habit.title %>
     <% end %>
   <% end %>
