@@ -4,7 +4,8 @@ class HabitsController < ApplicationController
 
   def index
     @habits = Habit.all
-    @records = Record.all.order("created_at DESC").page(params[:page])
+    @records = Record.all
+    @page_records = Record.all.order("created_at DESC").page(params[:page]).per(4)
   end
 
   def new

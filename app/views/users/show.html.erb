@@ -19,12 +19,12 @@
 <div class="container py-5">
   <h3>最近の記録</h3>
 </div>
-<% @records.first(2).each do |record| %>
+<% @page_records.each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
 <% end %>
 
 <div class="container my-5 py-5 d-flex justify-content-center">
-  <%= paginate @records %>
+  <%= paginate @page_records %>
 </div>
 
 <%= javascript_pack_tag 'user/show' %>

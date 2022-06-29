@@ -1,10 +1,10 @@
 <div class="heading h2">みんなの習慣記録一覧</div>
-<% @records.first(4).each do |record| %>
+<% @page_records.each do |record| %>
   <%= render partial: 'records/record', locals: { record: record } %>
 <% end %>
 
 <div class="container my-5 py-5 d-flex justify-content-center">
-  <%= paginate @records %>
+  <%= paginate @page_records %>
 </div>
 
 <% if @habits.ids.present? %>
