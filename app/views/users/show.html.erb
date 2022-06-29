@@ -24,7 +24,7 @@
 <% end %>
 
 <div class="container my-5 py-5 d-flex justify-content-center">
-  <%= paginate @records %>
+  <%= paginate @records.per(2) %>
 </div>
 
 <%= javascript_pack_tag 'user/show' %>
