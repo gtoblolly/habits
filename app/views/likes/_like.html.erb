@@ -4,6 +4,8 @@
   <% else %>
     <%= link_to '', habit_record_likes_path(@habits.ids, record.id), method: :POST, remote: true, class:"bi bi-heart"%>
   <% end %>
+<% else %>
+  <div class="bi bi-heart"></div>
 <% end %>
 
 <%= record.likes.count %>
