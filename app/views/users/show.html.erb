@@ -1,11 +1,13 @@
 <div class="heading h2"><%= @nickname %>さんのページ</div>
 
-<div class="container py-5 d-grid gap-2 d-md-flex justify-content-md-end">
-  <% if @habits.ids.present? %>
-    <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5", method: :get %>
-  <% end %>
-  <%= link_to "習慣を作る", new_habit_path, class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5" %>
-</div>
+<% if user_signed_in? && current_user.id.to_s == params[:id] %>
+  <div class="container py-5 d-grid gap-2 d-md-flex justify-content-md-end">
+    <% if @habits.ids.present? %>
+      <%= link_to "記録する", new_habit_record_path(@habits.ids), class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5", method: :get %>
+    <% end %>
+    <%= link_to "習慣を作る", new_habit_path, class: "btn btn-outline-success btn-lg col-5 btn-block mx-auto mt-5" %>
+  </div>
+<% end %>
 
 <div class="container py-5">
   <h3>習慣一覧</h3>
