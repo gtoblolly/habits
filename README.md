@@ -1,4 +1,19 @@
-# README
+
+# アプリ名
+Habits
+
+# 概要
+習慣を記録して共有するアプリです
+
+
+
+
+
+
+
+
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
