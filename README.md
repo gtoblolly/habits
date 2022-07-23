@@ -1,14 +1,15 @@
 
 # アプリケーション名:『Habits』
 
-## 概要
+
+# 概要
 望む習慣を定着させるアプリです  
 そのため習慣を作り、記録して、共有することができます。
 
-## 本番環境
+# 本番環境
 https://habitsrecords.com
 
-## 機能一覧
+# 機能一覧
 ・ユーザー登録、ログイン機能(devise)  
 ・習慣作成機能(CRUD)  
 　-レベルアップ機能  
@@ -18,7 +19,7 @@ https://habitsrecords.com
 　-ページネーション機能(kaminari)  
 ・カレンダー機能(fullcalendar)  
 
-## 技術一覧
+# 技術一覧
 ・Ruby 2.6.5  
 ・Rails 6.0.4.1  
 ・JavaScript  
@@ -27,8 +28,8 @@ https://habitsrecords.com
 ・Unicorn  
 ・AWS
 
-## DB設計
-### users テーブル
+# DB設計
+## users テーブル
 
 | Column             | Type        | Options                |
 | -------------------|-------------| -----------------------|
@@ -43,7 +44,7 @@ https://habitsrecords.com
 - has_many :records
 - has_many :likes
 
-### habits テーブル
+## habits テーブル
 
 | Column      | Type       | Options                        |
 | ------------| -----------| -------------------------------|
@@ -58,7 +59,7 @@ https://habitsrecords.com
 - belongs_to :user
 - has_many   :records
 
-### records テーブル
+## records テーブル
 
 | Column     | Type       | Options                        |
 | -----------| -----------| -------------------------------|
@@ -73,7 +74,7 @@ https://habitsrecords.com
 - belongs_to :habit
 - has_many   :likes
 
-### likes テーブル
+## likes テーブル
 
 | Column        | Type       | Options                        |
 | --------------| -----------| -------------------------------|
@@ -85,9 +86,11 @@ https://habitsrecords.com
 - belongs_to :user
 - belongs_to :record
 
-## インフラ構成図
+# インフラ構成図
+![インフラ構成図](https://user-images.githubusercontent.com/73205589/180623547-47c78471-7c4f-4527-a89d-8da24bb1357b.jpg)
 
 ## 使い方
+
 
 ## 詳しい内容：Notion
 URL
