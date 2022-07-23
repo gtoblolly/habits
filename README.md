@@ -1,5 +1,5 @@
 
-# アプリ名 　Habits
+# アプリケーション名:『Habits』
 
 ## 概要
 望む習慣を定着させるアプリです  
@@ -16,7 +16,7 @@ https://habitsrecords.com
 　-画像投稿機能(ActiveStorage)  
 　-いいね機能(Ajax)  
 　-ページネーション機能(kaminari)  
-・カレンダー機能(fullcalendar)   
+・カレンダー機能(fullcalendar)  
 
 ## 技術一覧
 ・Ruby 2.6.5  
