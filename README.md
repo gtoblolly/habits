@@ -16,7 +16,7 @@
 <br />
   
 # 本番環境
-http://35.78.39.40
+https://habitsrecords.com
 <br />
 <br />
 
