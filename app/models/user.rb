@@ -14,6 +14,6 @@ class User < ApplicationRecord
     likes.where(record_id: record_id).exists?
   end
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, length: { maximum: 30 }
 
 end
