@@ -2,8 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   before do
-    driven_by(:rack_test)
+    @user = FactoryBot.build(:user)
   end
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+  context 'ユーザー新規登録ができるとき' do
+    it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
+      # トップページに移動する
+      # トップページにサインアップページへ遷移するボタンがあることを確認する
+      # 新規登録ページへ移動する
+      # ユーザー情報を入力する
+      # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
+      # トップページへ遷移したことを確認する
+      # サインアップページへ遷移するボタンや、ログインページへ遷移するボタンが表示されていないことを確認する
+    end
+  end
+
 end
