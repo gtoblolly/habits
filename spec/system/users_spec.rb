@@ -51,5 +51,33 @@ RSpec.describe "Users", type: :system do
       expect(current_path).to eq(new_user_registration_path)
     end
   end
+end
+
+RSpec.describe 'ログイン', type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+  context 'ログインができるとき' do
+    it '保存されているユーザー情報と合致すればログインできる' do
+      # トップページに移動する
+      # トップページにログインページへ遷移するボタンがあることを確認する
+      # ログインページへ遷移する
+      # 正しいユーザー情報を入力する
+      # ログインボタンを押す
+      # トップページに遷移することを確認する
+      # サインアップページへ遷移するボタンや、ログインページへ遷移するボタンが表示されていないことを確認する
+    end
+  end
+
+  context 'ログインできないとき' do
+    it '保存されているユーザー情報と合致しないとログインできない' do
+      # トップページに遷移する
+      # トップページにログインページへ遷移するボタンがあることを確認する
+      # ログインページに遷移する
+      # ユーザー情報を入力する
+      # ログインボタンを押す
+      # ログインページへ戻されることを確認する
+    end
+  end
 
 end
