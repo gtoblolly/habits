@@ -32,7 +32,7 @@ RSpec.describe "Habits", type: :system do
       # マイページに遷移することを確認する
       expect(current_path).to eq(user_path(@user.id))
       # マイページには先ほど生成した習慣が存在することを確認する
-      expect(page).to have_content (@habit_title)
+      expect(page).to have_content(@habit_title)
     end
   end
   context '習慣生成ができないとき'do
@@ -53,28 +53,60 @@ RSpec.describe '習慣編集', type: :system do
   context '習慣の編集ができるとき' do
     it 'ログインしたユーザーは自分が生成したした習慣の編集ができる' do
       # 習慣1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @habit1.user.email
+      fill_in 'user_password', with: @habit1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 習慣1の詳細ページに遷移する
+      visit habit_path(@habit1.id)
       # [習慣を編集]へのリンクがあることを確認する
+      expect(page).to have_link '習慣を編集', href: edit_habit_path(@habit1)
       # 習慣編集ページへ遷移する
+      visit edit_habit_path(@habit1)
       # すでに生成済みの内容がフォームに入っていることを確認する
+      expect(
+        find('#habit_title').value
+      ).to eq @habit1.title
+      expect(
+        find('#habit_content').value
+      ).to eq @habit1.content
       # 習慣内容を編集する
+      fill_in 'habit_title', with: "#{@habit1.title}+編集した習慣名"
+      fill_in 'habit_content', with: "#{@habit1.content}+編集した習慣内容"
       # 編集してもHabitモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Habit.count }.by(0)
       # 習慣詳細ページに遷移したことを確認する
+      expect(current_path).to eq(habit_path(@habit1.id))
       # 習慣詳細ページには先ほど変更した内容の習慣が存在することを確認する（習慣名）
+      expect(page).to have_content("#{@habit1.title}+編集した習慣名")
       # 習慣詳細ページには先ほど変更した内容の習慣が存在することを確認する（習慣内容）
+      expect(page).to have_content("#{@habit1.content}+編集した習慣内容")
     end
   end
   context '習慣の編集ができないとき' do
     it 'ログインしたユーザーは自分以外が生成した習慣の編集画面には遷移できない' do
       # 習慣1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @habit1.user.email
+      fill_in 'user_password', with: @habit1.user.password
+      find('input[name="commit"]').click
       # 習慣2の習慣詳細ページへ遷移する
+      visit habit_path(@habit2.id)
       # 「習慣を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link '習慣を編集', href: edit_habit_path(@habit2)
     end
     it 'ログインしていないと習慣の編集画面には遷移できない' do
       # 習慣1の習慣詳細ページへ遷移する
+      visit habit_path(@habit1.id)
       # 「習慣を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link '習慣を編集', href: edit_habit_path(@habit1)
       # 習慣2の習慣詳細ページへ遷移する
+      visit habit_path(@habit2.id)
       # 「習慣を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link('習慣を編集'), href: edit_habit_path(@habit2)
     end
   end
 end
