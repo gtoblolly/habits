@@ -119,32 +119,62 @@ RSpec.describe '習慣削除', type: :system do
   context '習慣の削除ができるとき' do
     it 'ログインしたユーザーは自分が生成した習慣の削除ができる' do
       # 習慣1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @habit1.user.email
+      fill_in 'user_password', with: @habit1.user.password
+      find('input[name="commit"]').click
       # 習慣1のユーザーページに遷移する
+      visit user_path(@habit1.user_id)
       # 習慣1のユーザーページには習慣1のタイトルがあることを確認する
+      expect(page).to have_content("#{@habit1.title}")
       # 習慣1の詳細ページに遷移する
+      visit habit_path(@habit1.id)
       # 「習慣を削除」ボタンがあることを確認する
-      # 「習慣を削除」ボタンを押すとHabitモデルのカウントが減ることを確認する
-      # 習慣1のユーザーページに遷移したことを確認する
+      expect(page).to have_link '習慣を削除', href: habit_path(@habit1)
+      # 「習慣を削除」ボタンを押すと習慣1のユーザーページに遷移し,Habitモデルのカウントが減ることを確認する
+      expect{
+        page.accept_confirm do
+          click_link '習慣を削除'
+        end
+        expect(current_path).to eq(user_path(@habit1.user_id))
+      }.to change { Habit.count }.by(-1)
       # 習慣1のユーザーページには習慣1のタイトルがないことを確認する
+      expect(page).to have_no_content("#{@habit1.title}")
     end
   end
   context '習慣の削除ができないとき' do
     it 'ログインしたユーザーは自分以外が生成した習慣の削除画面には遷移できない' do
       # 習慣1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @habit1.user.email
+      fill_in 'user_password', with: @habit1.user.password
+      find('input[name="commit"]').click
       # 習慣2のユーザーページに遷移する
+      visit user_path(@habit2.user_id)
       # 習慣2のユーザーページには習慣2のタイトルがあることを確認する
+      expect(page).to have_content("#{@habit2.title}")
       # 習慣2の詳細ページに遷移する
+      visit habit_path(@habit2.id)
       # 「習慣を削除」ボタンがないことを確認する
+      expect(page).to have_no_content("習慣を削除")
     end
     it 'ログインしていないと習慣の削除画面には遷移できない' do
       # 習慣1のユーザーページに遷移する
+      visit user_path(@habit1.user_id)
       # 習慣1のユーザーページには習慣1のタイトルがあることを確認する
+      expect(page).to have_content("#{@habit1.title}")
       # 習慣1の詳細ページに遷移する
+      visit habit_path(@habit1.id)
       # 「習慣を削除」ボタンがないことを確認する
+      expect(page).to have_no_content("習慣を削除")
       # 習慣2のユーザーページに遷移する
+      visit user_path(@habit2.user_id)
       # 習慣2のユーザーページには習慣2のタイトルがあることを確認する
+      expect(page).to have_content("#{@habit2.title}")
       # 習慣2の詳細ページに遷移する
+      visit habit_path(@habit2.id)
       # 「習慣を削除」ボタンがないことを確認する
+      expect(page).to have_no_content("習慣を削除")
     end
   end
 end
