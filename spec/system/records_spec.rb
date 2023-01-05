@@ -55,28 +55,55 @@ RSpec.describe '記録編集', type: :system do
   context '記録の編集ができるとき' do
     it 'ログインしたユーザーは自分が生成したした記録の編集ができる' do
       # 記録1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @record1.user.email
+      fill_in 'user_password', with: @record1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 記録1の詳細ページに遷移する
+      visit habit_record_path(@record1.habit_id, @record1.id)
       # [記録を編集]へのリンクがあることを確認する
+      expect(page).to have_link '記録を編集', href: edit_habit_record_path(@record1.habit_id, @record1.id)
       # 記録編集ページへ遷移する
+      visit edit_habit_record_path(@record1.habit_id, @record1.id)
       # すでに生成済みの内容がフォームに入っていることを確認する
+      expect(
+        find('#record_text').value
+      ).to eq @record1.text
       # 記録内容を編集する
+      fill_in 'record_text', with: "#{@record1.text}+編集した記録名"
+      image_path = Rails.root.join('public/images/test_image.png')
       # 編集してもRecordモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Record.count }.by(0)
       # 記録詳細ページに遷移したことを確認する
+      expect(current_path).to eq(habit_record_path(@record1.habit_id, @record1.id))
       # 記録詳細ページには先ほど変更した内容の記録が存在することを確認する（記録内容）
-      # 記録詳細ページには先ほど変更した内容の記録が存在することを確認する（画像）
+      expect(page).to have_content("#{@record1.text}+編集した記録")
     end
   end
   context '記録の編集ができないとき' do
     it 'ログインしたユーザーは自分以外が生成した記録の編集画面には遷移できない' do
       # 記録1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @record1.user.email
+      fill_in 'user_password', with: @record1.user.password
+      find('input[name="commit"]').click
       # 記録2の記録詳細ページへ遷移する
+      visit habit_record_path(@record2.habit_id, @record2.id)
       # 「記録を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を編集', href: edit_habit_record_path(@record1.habit_id, @record1.id)
     end
     it 'ログインしていないと記録の編集画面には遷移できない' do
       # 記録1の記録詳細ページへ遷移する
+      visit habit_record_path(@record1.habit_id, @record1.id)
       # 「記録を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を編集', href: edit_habit_record_path(@record1.habit_id, @record1.id)
       # 記録2の記録詳細ページへ遷移する
+      visit habit_record_path(@record2.habit_id, @record2.id)
       # 「記録を編集」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を編集', href: edit_habit_record_path(@record2.habit_id, @record2.id)
     end
   end
 end
