@@ -116,22 +116,44 @@ RSpec.describe '記録削除', type: :system do
   context '記録の削除ができるとき' do
     it 'ログインしたユーザーは自分が生成した記録の削除ができる' do
       # 記録1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @record1.user.email
+      fill_in 'user_password', with: @record1.user.password
+      find('input[name="commit"]').click
       # 記録1の詳細ページに遷移する
-      # # [記録を削除]へのリンクがあることを確認する
+      visit habit_record_path(@record1.habit_id, @record1.id)
+      # [記録を削除]へのリンクがあることを確認する
+      expect(page).to have_link '記録を削除', href: habit_record_path(@record1.habit_id, @record1.id)
       # 「記録を削除」ボタンを押すと記録1のユーザーページに遷移し,Recordモデルのカウントが減ることを確認する
+      expect{
+        page.accept_confirm do
+          click_link '記録を削除'
+        end
+        expect(current_path).to eq(user_path(@record1.user_id))
+      }.to change { Record.count }.by(-1)
     end
   end
   context '記録の削除ができないとき' do
     it 'ログインしたユーザーは自分以外が生成した記録の削除画面には遷移できない' do
       # 記録1を生成したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user_email', with: @record1.user.email
+      fill_in 'user_password', with: @record1.user.password
+      find('input[name="commit"]').click
       # 記録2の詳細ページに遷移する
+      visit habit_record_path(@record2.habit_id, @record2.id)
       # 「記録を削除」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を削除', href: habit_record_path(@record2.habit_id, @record2.id)
     end
     it 'ログインしていないと記録の削除画面には遷移できない' do
       # 記録1の詳細ページに遷移する
+      visit habit_record_path(@record1.habit_id, @record1.id)
       # 「記録を削除」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を削除', href: habit_record_path(@record1.habit_id, @record1.id)
       # 記録2の詳細ページに遷移する
+      visit habit_record_path(@record2.habit_id, @record2.id)
       # 「記録を削除」へのリンクがないことを確認する
+      expect(page).to have_no_link '記録を削除', href: habit_record_path(@record2.habit_id, @record2.id)
     end
   end
 end
