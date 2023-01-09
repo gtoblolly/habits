@@ -12,7 +12,7 @@
   </div>
 
   <div class="record-main d-flex justify-content-center align-items-center" style="height:100px;">
-    <%= link_to habit_record_path(@habits.ids, record.id), method: :get do %>
+    <%= link_to habit_record_path(record.habit_id, record.id), method: :get do %>
       <%= record.habit.title %>習慣達成
     <% end %>
   </div>

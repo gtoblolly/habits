@@ -21,8 +21,8 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @habits = Habit.all
     @record = Record.find(params[:id])
+    @habit = Habit.find(@record.habit_id)
   end
 
   def destroy
@@ -44,10 +44,9 @@ class RecordsController < ApplicationController
   end
 
   def update
-    @habits = Habit.all
-    record = Record.find(params[:id])
-    record.update(record_params)
-    redirect_to habit_record_path(@habits.ids, record.id)
+    @record.update(record_params)
+    @habit = Habit.find(@record.habit_id)
+    redirect_to habit_record_path(@habit.id, @record.id)
   end
 
   private

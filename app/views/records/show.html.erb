@@ -13,8 +13,8 @@
   </div>
   <div class="p-3 d-flex justify-content-around">
   <% if user_signed_in? && current_user.id == @record.user_id%>
-    <%= link_to "記録を編集", edit_habit_record_path(@record.id), class: "btn btn-outline-warning", method: :get %>
-    <%= link_to "記録を削除", habit_record_path(@record.id), class: "btn btn-outline-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    <%= link_to "記録を編集", edit_habit_record_path(@habit.id, @record.id), class: "btn btn-outline-warning", method: :get %>
+    <%= link_to "記録を削除", habit_record_path(@habit.id, @record.id), class: "btn btn-outline-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
 </div>
 </div>
