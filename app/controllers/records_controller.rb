@@ -21,6 +21,7 @@ class RecordsController < ApplicationController
   end
 
   def show
+    @habits = Habit.all
     @record = Record.find(params[:id])
     @habit = Habit.find(@record.habit_id)
   end
