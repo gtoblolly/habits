@@ -20,17 +20,10 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    ActiveRecord::Base.transaction do
-      record = Record.find(params[:id])
-      habit = Habit.find(record.habit_id)
-      record.destroy
-      habit.exp_sum -= 1
-      habit.level = habit.exp_sum.to_i / 5
-      habit.update(exp_sum: habit.exp_sum, level: habit.level)
-    end
-      redirect_to user_path(current_user.id)
-    rescue => e
-      render :new
+    record = Record.find(params[:id])
+    habit = Habit.find(record.habit_id)
+    Record.destroy(record, habit)
+    redirect_to user_path(current_user.id)
   end
 
   def edit
