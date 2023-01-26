@@ -7,17 +7,10 @@ class RecordsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      @record = Record.create(record_params)
-      @record.save
-      @habit = Habit.find(@record.habit_id)
-      @habit.exp_sum += @record.exp.to_i
-      @habit.level = @habit.exp_sum.to_i / 5
-      @habit.update(exp_sum: @habit.exp_sum, level: @habit.level)
-    end
-      redirect_to user_path(current_user.id)
-    rescue => e
-      render :new
+    @record = Record.create(record_params)
+    habit = Habit.find(@record.habit_id)
+    Record.save(@record, habit)
+    redirect_to user_path(current_user.id)
   end
 
   def show
