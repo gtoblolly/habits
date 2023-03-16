@@ -39,7 +39,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:text, :habit_id, :image).merge(user_id: current_user.id)
+    params.require(:record).permit(:text, :habit_id, :image, :exp).merge(user_id: current_user.id)
   end
 
   def move_to_index

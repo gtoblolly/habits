@@ -46,7 +46,7 @@ class HabitsController < ApplicationController
   private
 
   def habit_params
-    params.require(:habit).permit(:title, :content).merge(user_id: current_user.id)
+    params.require(:habit).permit(:title, :content, :exp_sum, :level).merge(user_id: current_user.id)
   end
 
   def move_to_index

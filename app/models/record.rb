@@ -16,6 +16,7 @@ class Record < ApplicationRecord
 
   def self.destroy(record, habit)
     ActiveRecord::Base.transaction do
+      record.destroy
       habit.exp_sum -= record.exp
       habit.level = habit.exp_sum / 5
       habit.update(exp_sum: habit.exp_sum, level: habit.level)
