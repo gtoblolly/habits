@@ -41,6 +41,7 @@ class HabitsController < ApplicationController
     @habits = Habit.all
     @habit = gon.habit = Habit.find(params[:id])
     @records = @habit.records.order("created_at DESC").page(params[:page]).per(2)
+    @all_records = @habit.records
   end
 
   private
