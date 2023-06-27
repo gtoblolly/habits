@@ -3,7 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import googleCalendarApi from '@fullcalendar/google-calendar'
 
-window .addEventListener('load', function() {
+window.addEventListener('load', function() {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new Calendar(calendarEl, {
@@ -24,6 +24,9 @@ window .addEventListener('load', function() {
         display: 'background'
       },
     ],
+    eventClick: function(info) {
+      window.location.href = `/habits/${info.event.extendedProps.habit_id}/records/date?date=${info.event.startStr}&user_id=${gon.user.id}`;
+    },
   });
 
   calendar.render();

@@ -36,6 +36,13 @@ class RecordsController < ApplicationController
     redirect_to habit_record_path(@habit.id, @record.id)
   end
 
+  def date
+    @date = Date.parse(params[:date])
+    @user = User.find(params[:user_id])
+    @habits = @user.habits
+    @records = @user.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
+  end
+
   private
 
   def record_params

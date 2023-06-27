@@ -1,0 +1,7 @@
+<div class="heading h2">
+  <%= @date.strftime("%Y年%m月%d日") %>の<%= @user.nickname %>さんの記録一覧ページ
+</div>
+
+<% @records.each do |record| %>
+  <%= render partial: 'records/record', locals: { record: record } %>
+<% end %>
