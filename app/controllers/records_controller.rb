@@ -38,9 +38,15 @@ class RecordsController < ApplicationController
 
   def date
     @date = Date.parse(params[:date])
-    @user = User.find(params[:user_id])
-    @habits = @user.habits
-    @records = @user.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @habits = @user.habits
+      @records = @user.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
+    else params[:habit_id]
+      @habit = Habit.find(params[:habit_id])
+      @habits = Habit.all
+      @records = @habit.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
+    end
   end
 
   private

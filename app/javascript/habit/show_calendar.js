@@ -24,6 +24,9 @@ window.addEventListener('load', function() {
         display: 'background'
       },
     ],
+    eventClick: function(info) {
+      window.location.href = `/habits/${info.event.extendedProps.habit_id}/records/date?date=${info.event.startStr}&habit_id=${info.event.extendedProps.habit_id}`
+    }
   });
 
   calendar.render();
