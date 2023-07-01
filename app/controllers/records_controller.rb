@@ -42,10 +42,13 @@ class RecordsController < ApplicationController
       @user = User.find(params[:user_id])
       @habits = @user.habits
       @records = @user.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
-    else params[:habit_id]
+    elsif params[:habit_id]
       @habit = Habit.find(params[:habit_id])
       @habits = Habit.all
       @records = @habit.records.where(created_at: @date.beginning_of_day..@date.end_of_day)
+    else
+      @habits = Habit.all
+      @records = Record.where(created_at: @date.beginning_of_day..@date.end_of_day)
     end
   end
 

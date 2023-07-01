@@ -24,6 +24,9 @@ window .addEventListener('load', function() {
         display: 'background'
       },
     ],
+    eventClick: function(info) {
+      window.location.href = `/records/date?date=${info.event.startStr}`
+    }
   });
 
   calendar.render();

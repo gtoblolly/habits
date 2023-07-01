@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root to: "habits#index"
   resources :habits do
     resources :records, only: [:new, :create, :show, :destroy, :edit, :update] do
-      get 'date', on: :collection
       resource :likes, only: [:create, :destroy]
     end
   end
   resources :users, only: :show
+  get '/records/date', to: 'records#date'
 end

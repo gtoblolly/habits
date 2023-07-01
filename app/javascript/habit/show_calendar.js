@@ -25,7 +25,7 @@ window.addEventListener('load', function() {
       },
     ],
     eventClick: function(info) {
-      window.location.href = `/habits/${info.event.extendedProps.habit_id}/records/date?date=${info.event.startStr}&habit_id=${info.event.extendedProps.habit_id}`
+      window.location.href = `/records/date?date=${info.event.startStr}&habit_id=${info.event.extendedProps.habit_id}`
     }
   });
 
